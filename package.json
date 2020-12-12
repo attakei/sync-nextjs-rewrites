@@ -3,14 +3,27 @@
   "version": "0.1.0",
   "description": "Sync rewrites rules of Firebase Hosting from Next.js SPA",
   "author": "Kazuya Takei <myself@attakei.net>",
+  "keywords": [
+    "cli",
+    "firebase",
+    "hosting",
+    "nextjs"
+  ],
+  "homepage": "https://github.com/attakei/sync-nextjs-rewrites",
+  "bugs": "https://github.com/attakei/sync-nextjs-rewrites/issues",
+  "repository": "github:attakei/sync-nextjs-rewrites",
   "license": "Apache-2.0",
+  "files": [
+    "dist/**"
+  ],
   "bin": {
     "sync-nextjs-rewrites": "dist/cli.js"
   },
   "scripts": {
     "format": "prettier -l -w src/",
     "lint": "eslint --ext .ts src/",
-    "build": "tsc && chmod +x dist/cli.js"
+    "build": "tsc && chmod +x dist/cli.js",
+    "prepublish": "rimraf dist && npm run build"
   },
   "dependencies": {
     "arg": "^5.0.0",
@@ -26,6 +39,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "typescript": "^3.9.0"
   },
   "prettier": {

@@ -14,7 +14,19 @@ yarn add -D @attakei/sync-nextjs-rewrites
 
 ## Usage
 
-(TBD)
+Standard usage.
+
+```
+$ ls -l
+firebase.json pages
+$ yarn sync-nextjs-rewrites
+```
+
+For management sources in `src` directory.
+
+```
+$ yarn sync-nextjs-rewrites --pages src/pages
+```
 
 ## License
 
