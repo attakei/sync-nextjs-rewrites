@@ -1,0 +1,63 @@
+{
+  "name": "@attakei/sync-nextjs-rewrites",
+  "version": "0.1.0",
+  "description": "Sync rewrites rules of Firebase Hosting from Next.js SPA",
+  "author": "Kazuya Takei <myself@attakei.net>",
+  "license": "Apache-2.0",
+  "bin": {
+    "sync-nextjs-rewrites": "dist/cli.js"
+  },
+  "scripts": {
+    "format": "prettier -l -w src/",
+    "lint": "eslint --ext .ts src/",
+    "build": "tsc && chmod +x dist/cli.js"
+  },
+  "dependencies": {
+    "arg": "^5.0.0",
+    "loglevel": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/loglevel": "^1.6.3",
+    "@types/node": "^14.14.10",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "eslint": "^7",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "prettier": "^2.2.1",
+    "typescript": "^3.9.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "airbnb-typescript/base",
+      "prettier",
+      "prettier/@typescript-eslint"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "no-console": "off"
+    }
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/tests"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.+(ts|js)",
+      "**/?(*.)+(spec|test).+(ts|js)"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "~/(.+)": "<rootDir>/src/$1"
+    }
+  }
+}
