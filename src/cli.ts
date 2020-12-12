@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import * as path from 'path';
 import * as log from 'loglevel';
 import arg from 'arg';
 import { resolveFirebaseJson, resolveNextPagesDir } from './arg-resolvers';
+import { makeDynamicRoutes } from './nextjs-pages-mapper';
 
 const argType = {
   '--help': Boolean,
@@ -21,6 +21,8 @@ const main = () => {
     log.info(`Use firebase configuration: ${firebaseJson}`);
     const pagesDir = resolveNextPagesDir(args['--pages']);
     log.info(`Use next.js pages: ${pagesDir}`);
+    const routes = makeDynamicRoutes(pagesDir, ['.js', '.jsx', '.tsx']);
+    log.info(`Find ${routes.length} dynamic routeings.`);
   } catch (err) {
     if (err.code !== 'ARG_UNKNOWN_OPTION') {
       throw err;
