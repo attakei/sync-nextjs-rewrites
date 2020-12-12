@@ -1,4 +1,4 @@
-import { Route } from './nextjs-pages-mapper';
+import { Route } from './page-builder';
 
 type RewriteRule = {
   source: string;

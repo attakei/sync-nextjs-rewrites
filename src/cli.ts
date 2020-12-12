@@ -2,8 +2,8 @@
 import * as fs from 'fs';
 import * as log from 'loglevel';
 import arg from 'arg';
-import { resolveFirebaseJson, resolveNextPagesDir } from './arg-resolvers';
-import { makeDynamicRoutes } from './nextjs-pages-mapper';
+import { resolveFirebaseJson, resolveNextPagesDir } from './file-resolver';
+import { makeDynamicRoutes } from './page-builder';
 import {
   appendRules,
   convertToRuleList,
@@ -11,7 +11,6 @@ import {
 } from './rewrites';
 
 const argType = {
-  '--help': Boolean,
   '--verbose': Boolean,
   '--firebase': String,
   '--pages': String,
