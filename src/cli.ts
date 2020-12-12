@@ -1,8 +1,14 @@
 #!/usr/bin/env node
+import * as fs from 'fs';
 import * as log from 'loglevel';
 import arg from 'arg';
 import { resolveFirebaseJson, resolveNextPagesDir } from './arg-resolvers';
 import { makeDynamicRoutes } from './nextjs-pages-mapper';
+import {
+  appendRules,
+  convertToRuleList,
+  parseRewriteRuleMap,
+} from './rewrites';
 
 const argType = {
   '--help': Boolean,
@@ -23,6 +29,18 @@ const main = () => {
     log.info(`Use next.js pages: ${pagesDir}`);
     const routes = makeDynamicRoutes(pagesDir, ['.js', '.jsx', '.tsx']);
     log.info(`Find ${routes.length} dynamic routeings.`);
+    const firebaseConfig = JSON.parse(fs.readFileSync(firebaseJson, 'utf8'));
+    const rewrites = parseRewriteRuleMap(firebaseConfig.hosting.rewrites || []);
+    firebaseConfig.hosting.rewrites = convertToRuleList(
+      appendRules(rewrites, routes),
+    );
+    const firebaseConfigText = JSON.stringify(firebaseConfig, null, 2);
+    if (!args['--dry-run']) {
+      fs.writeFileSync(firebaseJson, firebaseConfigText);
+    } else {
+      log.info(firebaseConfigText);
+    }
+    log.info('Finished');
   } catch (err) {
     if (err.code !== 'ARG_UNKNOWN_OPTION') {
       throw err;

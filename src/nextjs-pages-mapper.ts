@@ -4,7 +4,7 @@
 import * as path from 'path';
 import walkSync from 'walk-sync';
 
-type Route = {
+export type Route = {
   src: string;
   dest: string;
   dynamic: boolean;
