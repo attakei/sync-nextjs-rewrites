@@ -27,7 +27,7 @@ const main = () => {
     const pagesDir = resolveNextPagesDir(args['--pages']);
     log.info(`Use next.js pages: ${pagesDir}`);
     const routes = makeDynamicRoutes(pagesDir, ['.js', '.jsx', '.tsx']);
-    log.info(`Find ${routes.length} dynamic routeings.`);
+    log.info(`Find ${routes.length} dynamic routings.`);
     const firebaseConfig = JSON.parse(fs.readFileSync(firebaseJson, 'utf8'));
     const rewrites = parseRewriteRuleMap(firebaseConfig.hosting.rewrites || []);
     firebaseConfig.hosting.rewrites = convertToRuleList(
