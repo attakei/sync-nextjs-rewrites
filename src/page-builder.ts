@@ -20,10 +20,11 @@ const pageToRoute = (page: string): Route => {
     pathInfo.dir = `/${pathInfo.dir}`;
   }
   const dirs = pathInfo.dir.split('/');
+  const hasDynamic = dirs.find(d => d.match(/\[.+\]/)) !== undefined;
   return {
-    src: `${dirs.map((d) => (d === '[id]' ? '**' : d)).join('/')}`,
+    src: `${dirs.map((d) => (d.match(/\[.+\]/) ? '**' : d)).join('/')}`,
     dest: `${pathInfo.dir}/index.html`,
-    dynamic: dirs.includes('[id]'),
+    dynamic: hasDynamic,
   };
 };
 
