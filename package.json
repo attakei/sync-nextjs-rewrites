@@ -1,6 +1,6 @@
 {
   "name": "@attakei/sync-nextjs-rewrites",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Sync rewrites rules of Firebase Hosting from Next.js SPA",
   "author": "Kazuya Takei <myself@attakei.net>",
   "keywords": [
